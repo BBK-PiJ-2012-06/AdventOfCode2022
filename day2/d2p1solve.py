@@ -1,9 +1,9 @@
 rounds = open('day2/input.txt', 'r').read().split('\n')
 
 shapeScores = {
-    #paper
-    'A': 1, 'X': 1,
     #rock
+    'A': 1, 'X': 1,
+    #paper
     'B': 2, 'Y': 2,
     #scissors
     'C': 3, 'Z': 3 
