@@ -25,7 +25,6 @@ print("Part 1:", part1)
 # sum the priority values for each of these items
 
 part2 = 0
-
 while rucksacks:
     elf1 = rucksacks.pop()
     elf2 = rucksacks.pop()
