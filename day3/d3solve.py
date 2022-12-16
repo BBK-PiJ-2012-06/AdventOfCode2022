@@ -12,12 +12,25 @@ def getPriorityValue(char):
     elif ord('a') <= ord(char) <= ord('z'):
         return ord(char) - ord('a') + 1
 
-prioritySum = 0
+part1 = 0
 for rucksack in rucksacks:
     compartment1 = rucksack[:int(len(rucksack)/2)]
     compartment2 = rucksack[int(len(rucksack)/2):]
 
-    intersection = set(compartment1).intersection(compartment2)
-    prioritySum += getPriorityValue(intersection.pop())
+    part1 += getPriorityValue(set(compartment1).intersection(compartment2).pop())
 
-print(prioritySum)
+print("Part 1:", part1)
+
+# each sequential group of 3 rucksacks has a single item in common
+# sum the priority values for each of these items
+
+part2 = 0
+
+while rucksacks:
+    elf1 = rucksacks.pop()
+    elf2 = rucksacks.pop()
+    elf3 = rucksacks.pop()
+    
+    part2 += getPriorityValue(set(elf1).intersection(elf2).intersection(elf3).pop())
+
+print("Part 2:", part2)
