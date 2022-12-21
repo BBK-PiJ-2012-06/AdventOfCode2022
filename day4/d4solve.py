@@ -1,4 +1,5 @@
-pairAssignments = open('day4/input.txt', 'r').read().split('\n')
+input = open('day4/input.txt', 'r')
+pairAssignments = input.read().split('\n')
 
 # each pair is assigned a range of values, e.g. 2-3,6-8
 # part 1: count how many assignments have one range fully containing the other, e.g. 3-4,2-4
@@ -24,3 +25,5 @@ for pairAssignment in pairAssignments:
 
 print("Part 1:", part1)
 print("Part 2:", part2)
+
+input.close()

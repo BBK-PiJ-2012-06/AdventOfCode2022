@@ -1,4 +1,5 @@
-rounds = open('day2/input.txt', 'r').read().split('\n')
+input = open('day2/input.txt', 'r')
+rounds = input.read().split('\n')
 
 shapeScores = {
     #rock
@@ -34,3 +35,4 @@ for round in rounds:
     totalScore += me + roundOutcomeScore
     
 print(totalScore)
+input.close()

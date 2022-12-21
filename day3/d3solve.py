@@ -1,4 +1,5 @@
-rucksacks = open('day3/input.txt', 'r').read().split('\n')
+input = open('day3/input.txt', 'r')
+rucksacks = input.read().split('\n')
 
 # each rucksack divides evenly into two halves
 # find the letter that appears in both halves
@@ -33,3 +34,4 @@ while rucksacks:
     part2 += getPriorityValue(set(elf1).intersection(elf2).intersection(elf3).pop())
 
 print("Part 2:", part2)
+input.close()

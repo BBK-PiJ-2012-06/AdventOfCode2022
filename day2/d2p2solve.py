@@ -1,4 +1,5 @@
-strategies = open('day2/input.txt', 'r').read().split('\n')
+input = open('day2/input.txt', 'r')
+strategies = input.read().split('\n')
 
 strategyScores = {
     'A X': 3, # lose to rock (play scissors): 3(s)+0(l) 
@@ -17,3 +18,4 @@ for strategy in strategies:
     totalScore += strategyScores[strategy]
     
 print(totalScore)
+input.close()
