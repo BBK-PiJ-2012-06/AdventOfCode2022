@@ -3,7 +3,7 @@ input = open('day7/input.txt', 'r')
 from util import File, Directory
 import re
 
-cd = '^\$ cd '
+cd = '\$ cd '
 ls = '\$ ls'
 dir = 'dir '
 file = '\d+ '
