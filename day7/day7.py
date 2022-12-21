@@ -36,7 +36,6 @@ for command in commandLog[1:]:
 
 # part 1: find the sum of sizes of all directories of size <= 100000
 def part1Traverse(dir: Directory) -> int:
-    # traverse the directory tree and find the sum of all directories of size <= 100000
     sum = 0
     for d in filter(lambda x: isinstance(x, Directory), dir.contents):
         size = d.getSize()
@@ -45,7 +44,26 @@ def part1Traverse(dir: Directory) -> int:
         sum += part1Traverse(d)
     return sum
 
-part1Sum = part1Traverse(root)
-print('Part 1:', part1Sum)
+print('Part 1:', part1Traverse(root))
+
+# part 2: the total disk space is 70,000,000 and we need 30,000,000 free space. 
+# we need to find the size of the smallest directory that, if deleted, would free up enough space.
+totalSpace = 70000000
+spaceNeeded = 30000000
+spaceUsed = root.getSize()
+spaceAvailable = totalSpace - spaceUsed
+spaceToFreeUp = spaceNeeded - spaceAvailable
+
+def part2Traverse(dir: Directory):
+    candidates = []
+    for d in filter(lambda x: isinstance(x, Directory), dir.contents):
+        size = d.getSize()
+        if size >= spaceToFreeUp:
+            candidates.append(size)
+        candidates.extend(part2Traverse(d))
+    return candidates
+
+candidateDirSizes = part2Traverse(root)
+print('Part 2:', min(candidateDirSizes))
 
 input.close()
