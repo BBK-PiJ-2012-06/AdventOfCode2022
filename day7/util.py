@@ -21,16 +21,5 @@ class File:
         self.size = size
 
     def getSize(self) -> int:
-        return self.size
-
-def part1Traverse(dir: Directory) -> int:
-    # traverse the directory tree and find the sum of all directories of size <= 100000
-    sum = 0
-    for d in filter(lambda x: isinstance(x, Directory), dir.contents):
-        size = d.getSize()
-        if size <= 100000:
-            sum += size
-        sum += part1Traverse(d)
-    return sum
-    
+        return self.size   
 
