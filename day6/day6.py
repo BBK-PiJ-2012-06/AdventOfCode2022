@@ -15,4 +15,15 @@ for i in range(len(inputView)):
     packetStart += 1
 print('Part 1:', packetStart)
 
+# start-of-message is marked by a sequence of 14 unique chars
+# part 2: find the number of chars until the beginning of the first message
+
+messageStart = 14
+for i in range(len(inputView)):
+    buffer = inputView[i:i+14]
+    if len(set(buffer)) == 14: # 14 elements in the set: all must be unique
+        print('Message start marker:', bytes(buffer))
+        break
+    messageStart += 1
+print('Part 2:', messageStart)
 input.close()
