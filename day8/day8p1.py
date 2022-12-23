@@ -5,10 +5,6 @@ input = open('day8/input.txt', 'r')
 # (all trees on the edge of the grid are visible).
 # part 1: count the number of visible trees.
 
-# thoughts: parse into 2d array. for each element:
-# if either index = 0 or max -> count it (2*width + 2*height - 4)
-# otherwise, start checking. optimise by checking shortest distance first (horiz then vert?)
-
 grid = [list(map(int, line)) for line in input.read().splitlines()]
 
 def isVisible(x, y):
@@ -50,4 +46,5 @@ for y in range(lenY)[1:-1]:
         nVisible += isVisible(x, y)
 
 print("Part 1:", nVisible)
+
 input.close()
