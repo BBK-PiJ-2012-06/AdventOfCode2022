@@ -52,8 +52,7 @@ maxScenicScore = 0
 for y in range(lenY):
     for x in range(lenX):
         scenicScore = getScenicScore(x, y)
-        if scenicScore > maxScenicScore:
-            maxScenicScore = scenicScore        
+        maxScenicScore = max(maxScenicScore, scenicScore)       
 
 print("Part 2:", maxScenicScore)
 input.close()
