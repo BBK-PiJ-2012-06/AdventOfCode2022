@@ -1,7 +1,7 @@
 input = open('day8/input.txt', 'r')
 
 # input is a square grid of tree heights. a tree is visible from outside the grid if it is 
-# taller than all trees between itself and the edge of the grid, in any of the cardinal direction 
+# taller than all trees between itself and the edge of the grid, in any of the cardinal directions 
 # (all trees on the edge of the grid are visible).
 # part 1: count the number of visible trees.
 
