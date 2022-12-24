@@ -24,7 +24,7 @@ def drawRope(): # just for debugging / fun :D
     for idx, r in enumerate(rope):
         x = r[0] - minX
         y = r[1] - minY
-        grid[y][x] = idx
+        grid[y][x] = 'H' if idx == 0 else 'T' if idx == 9 else idx
     print('-------')
     print('\n'.join(' '.join(str(x) for x in line) for line in reversed(grid)))
     
@@ -57,7 +57,8 @@ for move in movements:
                 t[0] = h[0]
         
         visited.add(tuple(tail))
-        #drawRope()
+    # print('\n', move)
+    # drawRope()
 
 print("Part 2:", len(visited))
 drawRope()
