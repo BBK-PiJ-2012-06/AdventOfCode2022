@@ -31,7 +31,7 @@ for move in movements:
             tail[1] += _y // 2
             tail[0] = head[0]
         
-        visited.add((tail[0], tail[1]))
+        visited.add(tuple(tail))
 
 print("Part 1:", len(visited))
 
