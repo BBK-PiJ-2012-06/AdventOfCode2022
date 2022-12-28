@@ -9,6 +9,7 @@ monkeys = []
 for monkeyStr in monkeyStrs:
     monkeys.append(Monkey(monkeyStr))
 
+# use the Chinese remainder theorem
 testProduct = reduce(lambda x, y: x*y, [m.test for m in monkeys])
 
 for round in range(10_000):
