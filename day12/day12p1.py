@@ -27,27 +27,26 @@ for i, row in enumerate(grid):
         if col == 'E':
             destination = (i, j)
 
-print(f'dest: {destination}')
 while True:
     # for current, consider all unvisited neighbours
     ci, cj = current
     for (i,j) in [(ci-1,cj), (ci+1,cj), (ci,cj-1), (ci,cj+1)]:
-        neighbour = unvisited.get(i, {}).get(j)
-        if neighbour is None: continue
+        if unvisited.get(i, {}).get(j) is None: continue # edge detection
         
-        # calculate tentative distance through the current node if accessible
+        # calculate tentative distance through the current node 
         neighbourHeight = ord('z') if grid[i][j] == 'E' else ord(grid[i][j])
         currentHeight = ord('a') if grid[ci][cj] == 'S' else ord(grid[ci][cj])
-        if neighbourHeight <= currentHeight + 1:
-            if unvisited[i][j] == 'inf' or (currentDistance + 1 < unvisited[i][j]):
+        if neighbourHeight <= currentHeight + 1: # if node is accessible
+            if unvisited[i][j] == 'inf' or (currentDistance + 1 < unvisited[i][j]): # save smallest tentative distance
                 unvisited[i][j] = currentDistance + 1
     
     # mark the current node as visited and remove it from the unvisited set
     visited[ci][cj] = currentDistance
     del unvisited[ci][cj]
     
-    # If the destination node has been marked visited, stop      
-    if visited.get(destination[0], {}).get(destination[1]): break
+    # If the destination node has been marked visited, stop
+    di, dj = destination      
+    if visited.get(di, {}).get(dj): break
    
     # Otherwise, select the unvisited node that is marked with the smallest tentative distance
     candidates = []
@@ -55,11 +54,11 @@ while True:
         if isinstance(row, dict):
             for j, col in row.items():
                 if col != 'inf':
-                    candidates.append((i, j, unvisited[i][j]))
-    topCandidate = sorted(candidates, key = lambda x: x[2])[0]
+                    candidates.append((i, j, unvisited[i][j])) # (coordinates, distance)
+    topCandidate = sorted(candidates, key = lambda x: x[2])[0] # sort by distance
     current = (topCandidate[0], topCandidate[1])
     currentDistance = topCandidate[2]
 
-print("Part 1:", visited[destination[0]][destination[1]])
+print("Part 1:", visited[di][dj])
 
 input.close()
