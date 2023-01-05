@@ -12,27 +12,27 @@ def dijkstra(heightMap, destination, start) -> int:
     unvisited[start[0]][start[1]] = currentDistance
 
     while True:
-    # for current, consider all unvisited neighbours
+        # for current, consider all unvisited neighbours
         ci, cj = current
         for (i,j) in [(ci-1,cj), (ci+1,cj), (ci,cj-1), (ci,cj+1)]:
             if unvisited.get(i, {}).get(j) is None: continue # edge detection
         
-        # calculate tentative distance through the current node 
+            # calculate tentative distance through the current node 
             neighbourHeight = ord('z') if heightMap[i][j] == 'E' else ord(heightMap[i][j])
             currentHeight = ord('a') if heightMap[ci][cj] == 'S' else ord(heightMap[ci][cj])
             if neighbourHeight <= currentHeight + 1: # if node is accessible
                 if unvisited[i][j] == 'inf' or (currentDistance + 1 < unvisited[i][j]): # save smallest tentative distance
                     unvisited[i][j] = currentDistance + 1
     
-    # mark the current node as visited and remove it from the unvisited set
+        # mark the current node as visited and remove it from the unvisited set
         visited[ci][cj] = currentDistance
         del unvisited[ci][cj]
     
-    # if the destination node has been marked visited, stop
+        # if the destination node has been marked visited, stop
         di, dj = destination      
         if visited.get(di, {}).get(dj): return visited[di][dj]
    
-    # otherwise, select the unvisited node that is marked with the smallest tentative distance
+        # otherwise, select the unvisited node that is marked with the smallest tentative distance
         candidates = []
         for i, row in unvisited.items():
             if isinstance(row, dict):
@@ -59,26 +59,26 @@ def dijkstraReversed(heightMap, destinationHeight, start) -> int:
     unvisited[start[0]][start[1]] = currentDistance
 
     while True:
-    # for current, consider all unvisited neighbours
+        # for current, consider all unvisited neighbours
         ci, cj = current
         for (i,j) in [(ci-1,cj), (ci+1,cj), (ci,cj-1), (ci,cj+1)]:
             if unvisited.get(i, {}).get(j) is None: continue # edge detection
         
-        # calculate tentative distance through the current node 
+            # calculate tentative distance through the current node 
             neighbourHeight = ord('z') if heightMap[i][j] == 'E' else ord(heightMap[i][j])
             currentHeight = ord('a') if heightMap[ci][cj] == 'S' else ord(heightMap[ci][cj])
             if neighbourHeight >= currentHeight - 1: # if node is accessible
                 if unvisited[i][j] == 'inf' or (currentDistance + 1 < unvisited[i][j]): # save smallest tentative distance
                     unvisited[i][j] = currentDistance + 1
     
-    # mark the current node as visited and remove it from the unvisited set
+        # mark the current node as visited and remove it from the unvisited set
         visited[ci][cj] = currentDistance
         del unvisited[ci][cj]
     
-    # if the destination height has been reached, stop
+        # if the destination height has been reached, stop
         if currentHeight == ord(destinationHeight): return currentDistance
    
-    # otherwise, select the unvisited node that is marked with the smallest tentative distance
+        # otherwise, select the unvisited node that is marked with the smallest tentative distance
         candidates = []
         for i, row in unvisited.items():
             if isinstance(row, dict):
